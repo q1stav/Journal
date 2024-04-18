@@ -1,0 +1,72 @@
+{
+	"disciplines": [
+		{
+			"id": "001",
+			"name": "Основы инженерной и компьютерной графики",
+			"Lessons": [
+				{ "id": "01", "title": "Lesson_1", "date": "2050-09-22" },
+				{ "id": "02", "title": "Lesson_2", "date": "2050-09-25" },
+				{ "id": "03", "title": "Lesson_2", "date": "2050-09-28" },
+				{ "id": "04", "title": "Lesson_2", "date": "2050-10-22" },
+				{ "id": "05", "title": "Lesson_2", "date": "2050-11-22" },
+				{ "id": "06", "title": "Lesson_2", "date": "2050-12-22" }
+			]
+		}
+	],
+	"students": [
+		{
+			"id": "1",
+			"FIO": "Иванов И.И.",
+			"marks": [
+				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "", "mark": "5" }
+			]
+		},
+		{
+			"id": "1",
+			"FIO": "Петров А.С.",
+			"marks": [
+				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "", "mark": "5" }
+			]
+		},
+		{
+			"id": "1",
+			"FIO": "Смирнова Е.М.",
+			"marks": [
+				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "", "mark": "5" }
+			]
+		},
+		{ "id": "1", "FIO": "Козлов К.П.", "marks": [{ "lesson_id": "", "mark": "5" }] },
+		{
+			"id": "1",
+			"FIO": "Соколова О.В.",
+			"marks": [{ "lesson_id": "", "mark": "5" }]
+		},
+		{
+			"id": "1",
+			"FIO": "Михайлов Д.А.",
+			"marks": [{ "lesson_id": "", "mark": "5" }]
+		},
+		{
+			"id": "1",
+			"FIO": "Васильева Н.Г.",
+			"marks": [{ "lesson_id": "", "mark": "5" }]
+		},
+		{
+			"id": "1",
+			"FIO": "Кузнецов П.И.",
+			"marks": [{ "lesson_id": "", "mark": "5" }]
+		},
+		{
+			"id": "1",
+			"FIO": "Николаева Т.С.",
+			"marks": [{ "lesson_id": "", "mark": "5" }]
+		},
+		{ "id": "1", "FIO": "Федорова В.Ф.", "marks": [{ "lesson_id": "", "mark": "5" }] }
+	]
+}
