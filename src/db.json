@@ -6,10 +6,10 @@
 			"Lessons": [
 				{ "id": "01", "title": "Lesson_1", "date": "2050-09-22" },
 				{ "id": "02", "title": "Lesson_2", "date": "2050-09-25" },
-				{ "id": "03", "title": "Lesson_2", "date": "2050-09-28" },
-				{ "id": "04", "title": "Lesson_2", "date": "2050-10-22" },
-				{ "id": "05", "title": "Lesson_2", "date": "2050-11-22" },
-				{ "id": "06", "title": "Lesson_2", "date": "2050-12-22" }
+				{ "id": "03", "title": "Lesson_3", "date": "2050-09-28" },
+				{ "id": "04", "title": "Lesson_4", "date": "2050-10-22" },
+				{ "id": "05", "title": "Lesson_5", "date": "2050-11-22" },
+				{ "id": "06", "title": "Lesson_6", "date": "2050-12-22" }
 			]
 		}
 	],
@@ -20,7 +20,8 @@
 			"marks": [
 				{ "lesson_id": "", "mark": "5" },
 				{ "lesson_id": "", "mark": "5" },
-				{ "lesson_id": "", "mark": "5" }
+				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "", "mark": null }
 			]
 		},
 		{
@@ -28,17 +29,17 @@
 			"FIO": "Петров А.С.",
 			"marks": [
 				{ "lesson_id": "", "mark": "5" },
-				{ "lesson_id": "", "mark": "5" },
-				{ "lesson_id": "", "mark": "5" }
+				{ "lesson_id": "", "mark": "3" },
+				{ "lesson_id": "", "mark": "3" }
 			]
 		},
 		{
 			"id": "1",
 			"FIO": "Смирнова Е.М.",
 			"marks": [
-				{ "lesson_id": "", "mark": "5" },
-				{ "lesson_id": "", "mark": "5" },
-				{ "lesson_id": "", "mark": "5" }
+				{ "lesson_id": "", "mark": "4" },
+				{ "lesson_id": "", "mark": "4" },
+				{ "lesson_id": "", "mark": "4" }
 			]
 		},
 		{ "id": "1", "FIO": "Козлов К.П.", "marks": [{ "lesson_id": "", "mark": "5" }] },

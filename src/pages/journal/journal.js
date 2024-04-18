@@ -3,6 +3,8 @@ import 'swiper/css/pagination';
 import './style.css';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { getAll, getDisciplineInfo } from '../../actions';
 
 const HeaderTable = styled.div`
 	display: flex;
@@ -51,32 +53,45 @@ const Lesson = styled.div`
 
 const JournalContainer = ({ className }) => {
 	const [students, setStudents] = useState([]);
+	const [discipline, setDiscipline] = useState({ Lessons: [1] });
 	const arr = [0, 1, 2, 3, 4, 5, 'Зачет'];
-	// const lessons = fetch('http://localhost:3005/disciplines').then((response) =>
-	// 	response.json(),
-	// );
-	// console.log(lessons);
+
 	useEffect(() => {
-	fetch('http://localhost:3005/students').then((response) =>
-		response.json().then((response) => setStudents(response)),
-	)},[])
-	console.log(students);
+		fetch('http://localhost:3005/disciplines/001')
+			.then((response) => response.json())
+			.then((response) => {
+				setDiscipline(response);
+				console.log(response);
+				// dispatch(getDisciplineInfo(response));
+			});
+	}, []);
+
+	useEffect(() => {
+		fetch('http://localhost:3005/students')
+			.then((response) => response.json())
+			.then((response) => {
+				setStudents(response);
+				console.log(response);
+				// dispatch(getAll(response));
+			});
+	}, []);
+
 	return (
 		<div className={className}>
-			<h2>Journal</h2>
+			<h2>{discipline.name}</h2>
 
-			<StudentTable>
+			<StudentTable key={'000002'}>
 				<HeaderTable>
 					<FIO></FIO>
-					{arr.map((value, index) => (
-						<Lesson>{value}</Lesson>
+					{discipline.Lessons.map((value, index) => (
+						<Lesson>{value.title}</Lesson>
 					))}
 				</HeaderTable>
-				{students.map((value, index) => (
+				{students.map((student, index) => (
 					<StudentRow>
-						<FIO>{value.FIO}</FIO>
-						{arr.map((value, index) => (
-							<Lesson>{value}</Lesson>
+						<FIO>{student.FIO}</FIO>
+						{student.marks.map((value, index) => (
+							<Lesson>{value.mark}</Lesson>
 						))}
 					</StudentRow>
 				))}
