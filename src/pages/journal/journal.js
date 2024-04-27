@@ -1,10 +1,11 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './style.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { fillAllStudents} from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { fillAllStudents, getDisciplineInfo} from '../../actions';
+import { selectLessons } from '../../selectors';
 
 const HeaderTable = styled.div`
 	display: flex;
@@ -54,9 +55,25 @@ const Lesson = styled.div`
 const JournalContainer = ({ className }) => {
 	const dispatch=useDispatch();
 
-console.log('render')
+	let lessons=[];
 
-dispatch(fillAllStudents)
+	useEffect(() => {
+		fetch('http://localhost:3005/disciplines/001')
+			.then((response)=>response.json())
+			.then((disciplineDataFromServer)=>{
+				console.log(disciplineDataFromServer.lessons);
+				lessons=[...disciplineDataFromServer.lessons]
+				console.log(lessons);
+				dispatch(getDisciplineInfo);
+				dispatch(fillAllStudents);
+			})
+	  },[dispatch]);
+console.log('render');
+
+
+
+console.log(lessons);
+
 
 	return (
 		<div className={className}>
@@ -65,9 +82,9 @@ dispatch(fillAllStudents)
 			<StudentTable >
 				<HeaderTable>
 					<FIO></FIO>
-					{/* {discipline.Lessons.map((value, index) => (
+					{lessons.map((value, index) => (
 						<Lesson key={value.id}>{value.title}</Lesson>
-					))} */}
+					))}
 				</HeaderTable>
 				{/* {students.map((student, index) => (
 					<StudentRow key={student.id}>
