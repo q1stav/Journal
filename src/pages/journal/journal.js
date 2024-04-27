@@ -4,7 +4,7 @@ import './style.css';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { getAll, getDisciplineInfo } from '../../actions';
+import { fillAllStudents} from '../../actions';
 
 const HeaderTable = styled.div`
 	display: flex;
@@ -52,49 +52,31 @@ const Lesson = styled.div`
 `;
 
 const JournalContainer = ({ className }) => {
-	const [students, setStudents] = useState([]);
-	const [discipline, setDiscipline] = useState({ Lessons: [1] });
-	const arr = [0, 1, 2, 3, 4, 5, 'Зачет'];
+	const dispatch=useDispatch();
 
-	useEffect(() => {
-		fetch('http://localhost:3005/disciplines/001')
-			.then((response) => response.json())
-			.then((response) => {
-				setDiscipline(response);
-				console.log(response);
-				// dispatch(getDisciplineInfo(response));
-			});
-	}, []);
+console.log('render')
 
-	useEffect(() => {
-		fetch('http://localhost:3005/students')
-			.then((response) => response.json())
-			.then((response) => {
-				setStudents(response);
-				console.log(response);
-				// dispatch(getAll(response));
-			});
-	}, []);
+dispatch(fillAllStudents)
 
 	return (
 		<div className={className}>
-			<h2>{discipline.name}</h2>
+			<h2>"ДИСЦИПЛИНА"</h2>
 
-			<StudentTable key={'000002'}>
+			<StudentTable >
 				<HeaderTable>
 					<FIO></FIO>
-					{discipline.Lessons.map((value, index) => (
-						<Lesson>{value.title}</Lesson>
-					))}
+					{/* {discipline.Lessons.map((value, index) => (
+						<Lesson key={value.id}>{value.title}</Lesson>
+					))} */}
 				</HeaderTable>
-				{students.map((student, index) => (
-					<StudentRow>
+				{/* {students.map((student, index) => (
+					<StudentRow key={student.id}>
 						<FIO>{student.FIO}</FIO>
 						{student.marks.map((value, index) => (
 							<Lesson>{value.mark}</Lesson>
 						))}
 					</StudentRow>
-				))}
+				))} */}
 			</StudentTable>
 		</div>
 	);

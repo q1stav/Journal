@@ -1,2 +1,1 @@
-export * from './get-all'
-export * from './get-discipline-info'
+export * from './fill_all_students'

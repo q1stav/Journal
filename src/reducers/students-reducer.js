@@ -1,10 +1,17 @@
-const initialUsersState = [];
+const initialStudentsState = [{
+	"id": "",
+	"FIO": "",
+	"marks": [
+		{ "lesson_id": "", "mark": "" }
+	]
+}];
 
-export const studentsReducer = (state = initialUsersState, action) => {
+export const studentsReducer = (state = initialStudentsState, action) => {
 	switch (action.type) {
 
-		case "GET_ALL":{
-			return(state=[...action.payload])
+		case "FILL_ALL_STUDENTS":{
+			return [...state,
+			...action.payload]
 		}
 		default:
 			return state;
