@@ -5,7 +5,9 @@ import { useState, useEffect, } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillAllStudents, getDisciplineInfo} from '../../actions';
-import { selectLessons } from '../../selectors';
+import { selectLessons, selectStudents } from '../../selectors';
+import { fetchDiscipline } from '../../Async-actions/get-async-discipline-info';
+import { fetchStudents } from '../../Async-actions/get-async-students-info';
 
 const HeaderTable = styled.div`
 	display: flex;
@@ -55,24 +57,20 @@ const Lesson = styled.div`
 const JournalContainer = ({ className }) => {
 	const dispatch=useDispatch();
 
-	let lessons=[];
+
 
 	useEffect(() => {
-		fetch('http://localhost:3005/disciplines/001')
-			.then((response)=>response.json())
-			.then((disciplineDataFromServer)=>{
-				console.log(disciplineDataFromServer.lessons);
-				lessons=[...disciplineDataFromServer.lessons]
-				console.log(lessons);
-				dispatch(getDisciplineInfo);
-				dispatch(fillAllStudents);
-			})
-	  },[dispatch]);
+				dispatch(fetchStudents())
+				dispatch(fetchDiscipline());
+
+	  },[]);
 console.log('render');
 
-
+const lessons=useSelector(selectLessons)
+const students=useSelector(selectStudents)
 
 console.log(lessons);
+console.log(students);
 
 
 	return (
@@ -86,14 +84,14 @@ console.log(lessons);
 						<Lesson key={value.id}>{value.title}</Lesson>
 					))}
 				</HeaderTable>
-				{/* {students.map((student, index) => (
+				{students.map((student, index) => (
 					<StudentRow key={student.id}>
 						<FIO>{student.FIO}</FIO>
 						{student.marks.map((value, index) => (
 							<Lesson>{value.mark}</Lesson>
 						))}
 					</StudentRow>
-				))} */}
+				))}
 			</StudentTable>
 		</div>
 	);
