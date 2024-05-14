@@ -1,10 +1,10 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './style.css';
-import { useState, useEffect, } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { fillAllStudents, getDisciplineInfo} from '../../actions';
+import { fillAllStudents, getDisciplineInfo } from '../../actions';
 import { selectLessons, selectStudents } from '../../selectors';
 import { fetchDiscipline } from '../../Async-actions/get-async-discipline-info';
 import { fetchStudents } from '../../Async-actions/get-async-students-info';
@@ -18,12 +18,26 @@ const HeaderTable = styled.div`
 	margin-bottom: 30px;
 `;
 
+const Body = styled.div`
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+	border-radius: 15px;
+	margin-bottom: 30px;
+`;
+
 const StudentTable = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
 	align-items: center;
 	height: 750px;
+`;
+
+const Column = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 `;
 
 const StudentRow = styled.div`
@@ -55,43 +69,61 @@ const Lesson = styled.div`
 `;
 
 const JournalContainer = ({ className }) => {
-	const dispatch=useDispatch();
-
-
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-				dispatch(fetchStudents())
-				dispatch(fetchDiscipline());
+		dispatch(fetchStudents());
+		dispatch(fetchDiscipline());
+	}, []);
+	console.log('render');
 
-	  },[]);
-console.log('render');
+	const lessons = useSelector(selectLessons);
+	const students = useSelector(selectStudents);
 
-const lessons=useSelector(selectLessons)
-const students=useSelector(selectStudents)
+	console.log(lessons);
+	console.log(students);
 
-console.log(lessons);
-console.log(students);
+	const StudentsColumn = () => {
+		const sts = students.map((student) => {
+			return <FIO>{student.FIO}</FIO>;
+		});
 
+		return <Column>{sts}</Column>;
+	};
+
+	const ColumnLessons = (LessonId) => {
+		const lessons = students.map((student) => {
+			const mark = student.marks.find((mark) => mark.lesson_id === LessonId)?.mark;
+
+			return (
+				<Lesson>
+					{mark} '{LessonId} {student.id}'
+				</Lesson>
+			);
+		});
+
+		return <Column>{lessons}</Column>;
+	};
+
+	const Columns = () => {
+		return lessons.map((lesson) => ColumnLessons(lesson.id));
+	};
 
 	return (
 		<div className={className}>
 			<h2>"ДИСЦИПЛИНА"</h2>
 
-			<StudentTable >
+			<StudentTable>
 				<HeaderTable>
-					<FIO></FIO>
+					<FIO>ФИО</FIO>
 					{lessons.map((value, index) => (
 						<Lesson key={value.id}>{value.title}</Lesson>
 					))}
 				</HeaderTable>
-				{students.map((student, index) => (
-					<StudentRow key={student.id}>
-						<FIO>{student.FIO}</FIO>
-						{student.marks.map((value, index) => (
-							<Lesson>{value.mark}</Lesson>
-						))}
-					</StudentRow>
-				))}
+				<Body>
+					{StudentsColumn()}
+					{Columns()}
+				</Body>
 			</StudentTable>
 		</div>
 	);
