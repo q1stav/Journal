@@ -18,8 +18,8 @@
 			"id": "1",
 			"FIO": "Иванов И.И.",
 			"marks": [
-				{ "lesson_id": "", "mark": "5" },
-				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "01", "mark": "5" },
+				{ "lesson_id": "03", "mark": "5" },
 				{ "lesson_id": "", "mark": "5" },
 				{ "lesson_id": "", "mark": null }
 			]
@@ -28,7 +28,7 @@
 			"id": "2",
 			"FIO": "Петров А.С.",
 			"marks": [
-				{ "lesson_id": "", "mark": "5" },
+				{ "lesson_id": "01", "mark": "5" },
 				{ "lesson_id": "", "mark": "3" },
 				{ "lesson_id": "", "mark": "3" }
 			]
@@ -42,7 +42,7 @@
 				{ "lesson_id": "", "mark": "4" }
 			]
 		},
-		{ "id": "10", "FIO": "Козлов К.П.", "marks": [{ "lesson_id": "", "mark": "5" }] },
+		{ "id": "10", "FIO": "Козлов К.П.", "marks": [{ "lesson_id": "03", "mark": "5" }] },
 		{
 			"id": "4",
 			"FIO": "Соколова О.В.",
